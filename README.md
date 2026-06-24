@@ -1,7 +1,7 @@
 # 🕵️‍♂️ FaisalSQLi - The Forbidden Deduction Edition 🕵️‍♂️
 
 <p align="center">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3pg6dkXBeFWMJtj2UYQAAb9W72fRr-moyc3EKnq6yKa9ei6WpL-dLULQ&s=10" alt="FaisalSQLi Forbidden Deduction" width="100%">
+  <img src="[https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3pg6dkXBeFWMJtj2UYQAAb9W72fRr-moyc3EKnq6yKa9ei6WpL-dLULQ&s=10](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvqUoWRgf-G2imadhZ7Dvffx6P1MOqMX70o95od0vWyzjnX_iMH8c96Go&s=10)" alt="FaisalSQLi Forbidden Deduction" width="100%">
 </p>
 
 <p align="center">
