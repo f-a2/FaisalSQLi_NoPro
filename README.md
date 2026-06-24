@@ -1,7 +1,7 @@
 # 🕵️‍♂️ FaisalSQLi - The Forbidden Deduction Edition 🕵️‍♂️
 
 <p align="center">
-  <img src="https://a.storyblok.com/f/178900/1920x1080/b29a84a87a/ron-kamonohashi-s-forbidden-deductions.jpg/m/1200x0/filters:quality(95)format(webp)" alt="FaisalSQLi Forbidden Deduction" width="100%">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3pg6dkXBeFWMJtj2UYQAAb9W72fRr-moyc3EKnq6yKa9ei6WpL-dLULQ&s=10" alt="FaisalSQLi Forbidden Deduction" width="100%">
 </p>
 
 <p align="center">
